@@ -47,4 +47,7 @@ function swap(el1, el2) {
     el2.style.height = temp;
     
 }
-
+var count_var=0;
+function update_comparisons(count_var){
+    document.getElementById("count").innerHTML = count_var;
+}

@@ -1,47 +1,66 @@
 const t3 = ms => new Promise(res => setTimeout(res, ms));
 
+async function partition(ele, l, r){
+    console.log('In partitionLomuto()');
+    let i = l - 1;
+    // color pivot element
+    ele[r].style.background = 'red';
+    for(let j = l; j <= r - 1; j++){
+        console.log('In partitionLomuto for j');
+        // color current element
+        ele[j].style.background = 'yellow';
+        // pauseChamp
+        await t3(delay);
 
-async function quickSort(input,si,ei){
-    if(ei-si>0){
-    var pos=await partition(input,si,ei);
-    console.log(pos);
-    await quickSort(input,si,pos-1);
-    await quickSort(input,pos+1,ei);
-    }
-}
-async function partition(input,si,ei){
-    var pivot= si;
-    var count=0;
-    for(var i=si;i<=ei;i++){
-        if( parseInt(input[i].style.height)<pivot){
-             count++;
+        if(parseInt(ele[j].style.height) < parseInt(ele[r].style.height)){
+            console.log('In partitionLomuto for j if');
+            i++;
+            swap(ele[i], ele[j]);
+            // color 
+            ele[i].style.background = 'orange';
+            if(i != j) ele[j].style.background = 'orange';
+            // pauseChamp
+            await t3(delay);
+        }
+        else{
+            // color if not less than pivot
+            ele[j].style.background = 'pink';
         }
     }
-    console.log(count);
+    i++; 
+    // pauseChamp
     await t3(delay);
-    swap(input[si],input[si+count])
-    
-    var i= si;
-     var j=ei;
+    swap(ele[i], ele[r]); // pivot height one
+    console.log(`i = ${i}`, typeof(i));
+    // color
+    ele[r].style.background = 'pink';
+    ele[i].style.background = 'green';
 
-        pivot=input[si+count]
-        input[si+count].style.background='blue';
-        while(i<si+count && j>si+count){
-            if(parseInt(input[i].style.height)<parseInt(pivot)){
-                await t3(delay);
-                i++;
-            }
-            else if(parseInt(input[i].style.height)>=pivot){
-                await t3(delay);
-                j--;
-            }
-            else{
-                await t3(delay);
-               swap(input[i],input[j])
-            }
+    // pauseChamp
+    await t3(delay);
+    
+    // color
+    for(let k = 0; k < ele.length; k++){
+        if(ele[k].style.background != 'green')
+            ele[k].style.background = 'cyan';
+    }
+
+    return i;
+}
+
+async function quickSort(ele, l, r){
+    console.log('In quickSort()', `l=${l} r=${r}`, typeof(l), typeof(r));
+    if(l < r){
+        let pivot_index = await partition(ele, l, r);
+        await quickSort(ele, l, pivot_index - 1);
+        await quickSort(ele, pivot_index + 1, r);
+    }
+    else{
+        if(l >= 0 && r >= 0 && l <ele.length && r <ele.length){
+            ele[r].style.background = 'green';
+            ele[l].style.background = 'green';
         }
-    console.log(input);           
-    return si+count;   
+    }
 }
 
 const quickbtn=document.querySelector(".quick")
