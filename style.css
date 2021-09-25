@@ -28,3 +28,6 @@ body {
     width: 12px;
     transition: 0.1s all ease;
 }
+footer{
+    background-color: blue;
+}

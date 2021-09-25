@@ -1,4 +1,4 @@
-const timer = ms => new Promise(res => setTimeout(res, ms))
+
 var c=0;
 async function bubblesort(){
     var bars=document.querySelectorAll(".bar")
@@ -9,7 +9,7 @@ async function bubblesort(){
             c++;
             update_comparisons(c);
             if(parseInt(bars[j].style.height)>parseInt(bars[j+1].style.height)){
-                 await timer(delay);
+                 await waitforme(delay);
                  swap(bars[j],bars[j+1])
             }
             bars[j].style.background='yellow';

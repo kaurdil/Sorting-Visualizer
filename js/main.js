@@ -10,6 +10,7 @@ let delay=260;
 let delayElement = document.querySelector("#speed_input")
 // event listener to update delay time
 delayElement.addEventListener('input',function(){
+    console.log(delay+" "+delayElement.value);
     delay=320-parseInt(delayElement.value);
 })
 
@@ -21,7 +22,7 @@ function createArray(nbars=50){
     for(let i=0;i<nbars;i++){
         array.push(Math.floor(Math.random()*250)+1);
     }
-    console.log(array);
+    //console.log(array);
 
    const bars=document.querySelector("#bars")
    for(var i=0;i<nbars;i++){
@@ -50,4 +51,12 @@ function swap(el1, el2) {
 var count_var=0;
 function update_comparisons(count_var){
     document.getElementById("count").innerHTML = count_var;
+}
+
+
+
+function waitforme(milisec) {
+    return new Promise(resolve => {
+        setTimeout(() => { resolve('') }, milisec);
+    })
 }

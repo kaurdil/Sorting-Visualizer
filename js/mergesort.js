@@ -1,4 +1,3 @@
-const time = ms => new Promise(res => setTimeout(res, ms))
 
 async function merge(bars,l,mid,r){
     //range of first half and create array for it
@@ -10,13 +9,13 @@ async function merge(bars,l,mid,r){
 
     // highlight the first half and add it into a1
     for(var i=0;i<r1;i++){
-        await time(delay);
+        await waitforme(delay);
         bars[l+i].style.background="pink";
         a1[i]=bars[l+i].style.height;
     }
      // highlight the second half and add it into a2
      for(var i=0;i<r2;i++){
-         await time(delay);
+        await waitforme(delay);
         bars[mid+i+1].style.background="orange";
         a2[i]=bars[mid+i+1].style.height;
     }
@@ -27,14 +26,14 @@ async function merge(bars,l,mid,r){
     while(i<r1 && j<r2){
         if(parseInt(a1[i])<parseInt(a2[j])){
             bars[k].style.height=a1[i];
-            await time(delay);
+            await waitforme(delay);
             bars[k].style.background="green";
             i++;
             k++;
         }
         else{
             bars[k].style.height=a2[j];
-            await time(delay);
+            await waitforme(delay);
             bars[k].style.background="green";
             j++;
             k++;
@@ -42,14 +41,14 @@ async function merge(bars,l,mid,r){
     }
     while(i<r1){
         bars[k].style.height=a1[i];
-        await time(delay);
+        await waitforme(delay);
         bars[k].style.background="green";
         i++;
         k++;
     }
     while(j<r2){
         bars[k].style.height=a2[j];
-            await time(delay);
+        await waitforme(delay);
             bars[k].style.background="green";
             j++;
             k++;
