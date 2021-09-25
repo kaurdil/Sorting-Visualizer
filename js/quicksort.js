@@ -1,12 +1,9 @@
 
 async function partition(ele, l, r){
-    console.log('In partitionLomuto()');
     let i = l - 1;
     // color pivot element
     ele[r].style.background = 'red';
     for(let j = l; j <= r - 1; j++){
-        console.log('In partitionLomuto for j');
-        
         // pause
         await waitforme(delay);
 
